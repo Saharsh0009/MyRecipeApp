@@ -4,11 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -27,10 +25,9 @@ import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun RecipeScreen(modifier: Modifier = Modifier,
-                  navigatetodetail: (Category) -> Unit
+                  navigatetodetail: (Category) -> Unit,
+                 viewstate: MainViewModel.RecipeState
 ) {
-    val recipeViewModel: MainViewModel = viewModel()
-    val viewstate by recipeViewModel.categorieState
     Box(modifier = modifier.fillMaxSize()){
         when{
             viewstate.loading -> {
@@ -62,7 +59,7 @@ items(categories){
 
 //Hoe each item looks like
 @Composable
-fun CategoryItem(category: Category
+fun CategoryItem(category: Category,
                  navigatetodetail: (Category) -> Unit
 ){
     Column(modifier = Modifier.padding(8.dp).
